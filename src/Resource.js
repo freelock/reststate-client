@@ -11,7 +11,8 @@ const getOptionsQuery = (optionsObject = {}) =>
     .join('&');
 
 const relatedResourceUrl = ({ parent, relationship }) => {
-  const builtUrl = `${parent.type}/${parent.id}/${relationship}`;
+  const resourceTranslated = parent.type.replace(/--/g, '/');
+  const builtUrl = `${resourceTranslated}/${parent.id}/${relationship}`;
 
   if (
     parent.relationships &&
