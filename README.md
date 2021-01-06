@@ -1,6 +1,6 @@
-# @reststate/client
+# freelock/reststate-client
 
-**This package is no longer maintained.**
+**This package is forked from @reststate/client, which is no longer maintained, and updated with fixes to support Drupal's JSONAPI.**
 
 A lightweight client for making requests to a JSON:API service.
 
