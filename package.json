@@ -3,7 +3,10 @@
   "version": "0.0.9",
   "description": "A vanilla JS client for JSON:API services",
   "main": "index.js",
-  "repository": "git@github.com:freelock/reststate-client.git",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/freelock/reststate-client.git"
+  },
   "author": "Josh Justice <me@codingitwrong.com>",
   "license": "Apache-2.0",
   "scripts": {
@@ -32,5 +35,13 @@
     "serialize-javascript": "^5.0.1",
     "set-value": "^3.0.2",
     "vuepress": "^1.0.1"
+  },
+  "bugs": {
+    "url": "https://github.com/freelock/reststate-client/issues"
+  },
+  "homepage": "https://github.com/freelock/reststate-client#readme",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
   }
 }
