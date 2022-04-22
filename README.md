@@ -57,6 +57,12 @@ const client = new ResourceClient({ name: 'widgets', httpClient });
 client.all().then(results => console.log(results));
 ```
 
+## Changes
+
+4/22/2022 -- With version 0.2.0, this library now automatically converts a double-dash (--) in a request to a slash (/), to natively support Drupal's JSON:API patterns. It does this only for the endpoint, and not for anything in the query string.
+
+This allows it to support relationships that specify a type of "<EntityType>--<Bundle>", to get automatically converted to an endpoint of "<EntityType>/<Bundle>".
+
 ## Usage
 
 For more information on usage, see the [`@reststate/client` docs](https://client.reststate.codingitwrong.com).

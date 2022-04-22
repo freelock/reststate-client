@@ -40,6 +40,7 @@ const extractErrorResponse = error => {
 class Resource {
   constructor({ name, httpClient }) {
     this.name = name;
+    this.nameConverted = name.replace(/--/g, '/');
     this.api = httpClient;
   }
 
@@ -49,14 +50,14 @@ class Resource {
     if (options.url) {
       ({ url } = options);
     } else {
-      url = `${this.name}?${getOptionsQuery(options)}`;
+      url = `${this.nameConverted}?${getOptionsQuery(options)}`;
     }
 
     return this.api.get(url).then(extractData).catch(extractErrorResponse);
   }
 
   find({ id, options } = {}) {
-    const url = `${this.name}/${id}?${getOptionsQuery(options)}`;
+    const url = `${this.nameConverted}/${id}?${getOptionsQuery(options)}`;
 
     return this.api.get(url).then(extractData).catch(extractErrorResponse);
   }
@@ -64,7 +65,7 @@ class Resource {
   where({ filter, options } = {}) {
     const queryString = filterQueryString(filter);
     return this.api
-      .get(`${this.name}?${queryString}&${getOptionsQuery(options)}`)
+      .get(`${this.nameConverted}?${queryString}&${getOptionsQuery(options)}`)
       .then(extractData)
       .catch(extractErrorResponse);
   }
@@ -79,7 +80,7 @@ class Resource {
     const record = Object.assign({}, partialRecord, { type: this.name });
     const requestData = { data: record };
     return this.api
-      .post(`${this.name}`, requestData)
+      .post(`${this.nameConverted}`, requestData)
       .then(extractData)
       .catch(extractErrorResponse);
   }
@@ -88,13 +89,13 @@ class Resource {
     // http://jsonapi.org/faq/#wheres-put
     const requestData = { data: record };
     return this.api
-      .patch(`${this.name}/${record.id}`, requestData)
+      .patch(`${this.nameConverted}/${record.id}`, requestData)
       .then(extractData)
       .catch(extractErrorResponse);
   }
 
   delete({ id }) {
-    return this.api.delete(`${this.name}/${id}`).catch(extractErrorResponse);
+    return this.api.delete(`${this.nameConverted}/${id}`).catch(extractErrorResponse);
   }
 }
 
