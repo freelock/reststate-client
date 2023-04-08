@@ -85,6 +85,23 @@ class Resource {
       .catch(extractErrorResponse);
   }
 
+  createFile(field, file) {
+    let url = `${this.nameConverted}/${field}`
+    return this.api.post(
+      {
+        url,
+        file,
+        headers: {
+          'Accept': 'application/vnd.api+json',
+          'Content-Type': 'application/octet-stream',
+          'Content-Disposition': `file; filename="${file.name}"`,
+        }
+      }
+    )
+      .then(extractData)
+      .catch(extractErrorResponse);
+  }
+
   update(record) {
     // http://jsonapi.org/faq/#wheres-put
     const requestData = { data: record };
@@ -93,7 +110,6 @@ class Resource {
       .then(extractData)
       .catch(extractErrorResponse);
   }
-
   delete({ id }) {
     return this.api.delete(`${this.nameConverted}/${id}`).catch(extractErrorResponse);
   }
