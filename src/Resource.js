@@ -88,9 +88,9 @@ class Resource {
   createFile(field, file) {
     let url = `${this.nameConverted}/${field}`
     return this.api.post(
+      url,
+      file,
       {
-        url,
-        file,
         headers: {
           'Accept': 'application/vnd.api+json',
           'Content-Type': 'application/octet-stream',
